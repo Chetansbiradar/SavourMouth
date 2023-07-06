@@ -13,14 +13,18 @@ const Body = () => {
     },[]);
 
     async function getRestaurants() {
-        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.3298307&lng=76.8634479&page_type=DESKTOP_WEB_LISTING");
+        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
         const json = await response.json();
         setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     }
 
-    return(
-        <>
+    if(!allRestaurants) {
+        return null;
+    }
+
+    return allRestaurants.length === 0 ? (<Shimmer/>) : (
+        <div className="body">
             <div className="search-container">
                 <input 
                 type="text"
@@ -45,15 +49,16 @@ const Body = () => {
                     }
                 }>Search</button>
             </div>
-            {allRestaurants.length === 0 && <Shimmer/>}
+            { filteredRestaurants.length === 0 ? <h1>No Results Found</h1> : 
             <div className="cards">
                 {
                     filteredRestaurants.map((restaurant) => {
-                            return <RestaurantCard {...restaurant.data}/>
+                            return <RestaurantCard {...restaurant.data} key={restaurant.data.id}/>
                     })
                 }
             </div>
-        </>
+            }
+        </div>
     )
 }
 
