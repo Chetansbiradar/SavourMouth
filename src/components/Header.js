@@ -1,9 +1,14 @@
+import Logo from '../assets/SavourMouth.png';
+import { Link } from 'react-router-dom';
+
 const Title = () => (
+    <Link to="/">
         <img 
         className="logo"
-        src="https://png.pngtree.com/png-clipart/20230319/original/pngtree-restaurant-logo-design-png-image_8995745.png" 
+        src={Logo} 
         alt="logo"
          />
+    </Link>
 )
 
 const Header = () =>{
@@ -12,10 +17,18 @@ const Header = () =>{
                 <Title />
                 <div className="nav-items">
                     <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Contact</li>
-                        <li>Cart</li>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/contact">Contact Us</Link>
+                        </li>
+                        <li>
+                            <Link to="/about">About Us</Link>
+                        </li>
+                        {/* <li>
+                            <Link to="/restaurant">Restaurants</Link>
+                        </li> */}
                     </ul>
                 </div>
             </div>
