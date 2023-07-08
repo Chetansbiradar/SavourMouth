@@ -2,6 +2,8 @@ import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../config";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { filterRestaurants } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
     const [allRestaurants, setAllRestaurants] = useState([]);
@@ -19,6 +21,12 @@ const Body = () => {
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     }
 
+    const isOnline = useOnline();
+    
+    if(!isOnline) {
+        return <h1>You are offline</h1>
+    }
+
     if(!allRestaurants) {
         return null;
     }
@@ -32,11 +40,10 @@ const Body = () => {
                 className="search-input"
                 value={searchText}
                 onChange={
-                    (e) => {setSearchText(e.target.value)
-                            const filteredRestaurantList = allRestaurants.filter((restaurant) => {
-                                return restaurant.data.name.toLowerCase().includes(e.target.value.toLowerCase());
-                            });
-                            setFilteredRestaurants(filteredRestaurantList);
+                    (e) => {
+                        setSearchText(e.target.value)
+                        const filteredRestaurantList = filterRestaurants(e.target.value, allRestaurants);
+                        setFilteredRestaurants(filteredRestaurantList);
                     }
                 }
                 />
