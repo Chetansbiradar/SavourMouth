@@ -52,13 +52,14 @@
     padding: 10px;
     border-radius: 6px;
     transition: 0.3s;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .card:hover, .foodItem:hover{
-    transform: scale(1.015);
+    transform: scale(1.009);
     cursor: pointer;
-    -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 8px rgba(68, 68, 68, 0.2);
     transition: 0.3s;
 }
 
@@ -72,6 +73,13 @@
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
+    background-color: #f1f1f1;
+    transition: 3s;
+}
+
+.card>img:hover, .foodItem>img:hover{
+    filter: saturate(1.15);
+    transition: 0.3s;
 }
 
 .nowrap{
