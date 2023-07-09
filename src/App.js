@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect,useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
+import UserContext from "./utils/UserContext";
 const About = lazy(() => import("./components/About"));
 // ^^^^^^^^^^^^^^^^^^
 // This is a dynamic import. It will load the component only when it is required.
@@ -20,13 +21,32 @@ const About = lazy(() => import("./components/About"));
 
 
 const AppLayout = () => {
+    const [user, setUser] = useState({
+        name: "Chetan Updated",
+        email: "chetanupdated@localhost"
+    });   
+    // useEffect(() => {
+    //     //authinticate the user
+    //     //update using set user  
+    // }, []);
+
+    //now to send user data to the child components we can use props but it leads to prop drilling or THE PAIN
+    //so we use context api or redux store to store the user data and access it in any component which are children of the provider
+    // provider is the component which provides the data to the children
+    // consumer is the component which consumes the data provided by the provider
+    // context api is used to avoid prop drilling
     return (
         <>
-            <Header />
-            <Outlet />
-            <Footer />
+            <Header /> 
+            <UserContext.Provider value={{user, setUser}}>
+                <Outlet />
+                <Footer />
+            </UserContext.Provider>
         </>
     )
+    // usercontext provider is the provider i,e to update the context and the usercontext consumer is the consumers
+    // if <Header/> is outside the provider then it will not be able to access the updated usercontext
+    // proof check About component
 }
 
 const BrowserRouter = createBrowserRouter([
