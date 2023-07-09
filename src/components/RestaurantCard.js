@@ -1,8 +1,11 @@
 import { IMG_CDN_URL } from "../config";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
     const {name, cuisines, avgRating, cloudinaryImageId,id} = props;
+    const {user} = useContext(UserContext);
     return( 
         <Link to={`/restaurant/${id}`}>
             <div className="w-56 p-2 m-2 shadow-lg" >
@@ -10,6 +13,8 @@ const RestaurantCard = (props) => {
                 <h2 className="nowrap">{name}</h2>
                 <p className="nowrap">{cuisines?.join(", ")}</p>
                 <h4>{avgRating} Stars</h4>
+                <p>{user.name}</p>
+                <p>{user.email}</p>
             </div>
         </Link>
     )
