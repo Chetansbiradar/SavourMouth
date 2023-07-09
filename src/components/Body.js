@@ -1,5 +1,4 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurantList } from "../config";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { filterRestaurants } from "../utils/helper";
@@ -32,8 +31,8 @@ const Body = () => {
     }
 
     return allRestaurants.length === 0 ? (<Shimmer/>) : (
-        <div className="body">
-            <div className="search-container">
+        <div className="">
+            <div className="p-5 flex space-x-5">
                 <input 
                 type="text"
                 placeholder="Search for restaurants"
@@ -47,9 +46,9 @@ const Body = () => {
                     }
                 }
                 />
-                <button className="search-btn" onClick={
+                <button className="bg-gray-500 rounded-full p-2" onClick={
                     () => {
-                        const filteredRestaurantList = restaurantList.filter((restaurant) => {
+                        const filteredRestaurantList = allRestaurants.filter((restaurant) => {
                             return restaurant.data.name.toLowerCase().includes(searchText.toLowerCase());
                         });
                         setFilteredRestaurants(filteredRestaurantList);
@@ -57,7 +56,7 @@ const Body = () => {
                 }>Search</button>
             </div>
             { filteredRestaurants.length === 0 ? <h1>No Results Found</h1> : 
-            <div className="cards">
+            <div className="flex flex-wrap">
                 {
                     filteredRestaurants.map((restaurant) => {
                             return <RestaurantCard {...restaurant.data} key={restaurant.data.id}/>
