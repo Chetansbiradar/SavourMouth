@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const RestaurantCard = (props) => {
     const {name, cuisines, avgRating, cloudinaryImageId,id} = props;
-    return(
-        <Link to={`/restaurant/${id}`} className="cardText">
-            <div className="card" >
+    return( 
+        <Link to={`/restaurant/${id}`}>
+            <div className="w-56 p-2 m-2 shadow-lg" >
                 <img src={IMG_CDN_URL+cloudinaryImageId}/>
                 <h2 className="nowrap">{name}</h2>
                 <p className="nowrap">{cuisines?.join(", ")}</p>

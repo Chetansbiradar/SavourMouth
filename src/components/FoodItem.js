@@ -3,7 +3,7 @@ const FoodItem = (props) => {
     ({name, price, category, ratings, itemAttribute, isVeg, inStock, imageId} = props.foodItem);
     return props.foodItem.type!=="ITEM" || props.foodItem.imageId===undefined ? null : (
         <>
-        <div className="foodItem">
+        <div className="p-2 m-2 w-28">
             {(imageId?<img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${imageId}`} alt={name} />:null)}
             <div className="foodItemDetails">
                 <div className="foodItemName">

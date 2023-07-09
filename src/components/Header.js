@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const Title = () => (
     <Link to="/">
         <img 
-        className="logo"
+        className="
+        h-24 p-2"
         src={Logo} 
         alt="logo"
          />
@@ -13,10 +14,10 @@ const Title = () => (
 
 const Header = () =>{
         return (
-            <div className="header">
+            <div className="flex justify-between px-10 shadow-md mb-2">
                 <Title />
-                <div className="nav-items">
-                    <ul>
+                <div className="flex">
+                    <ul className="flex space-x-5 items-center">
                         <li>
                             <Link to="/">Home</Link>
                         </li>
