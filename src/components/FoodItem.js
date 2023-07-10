@@ -1,6 +1,12 @@
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
+
 const FoodItem = (props) => {
-    console.log(props.foodItem);
-    ({name, price, category, ratings, itemAttribute, isVeg, inStock, imageId} = props.foodItem);
+    const dispatch = useDispatch();
+    const handleAddItem = () => {
+        dispatch(addItem("Grapes"));
+    }
+    const {name, price, category, ratings, itemAttribute, isVeg, inStock, imageId} = props.foodItem;
     return props.foodItem.type!=="ITEM" || props.foodItem.imageId===undefined ? null : (
         <>
         <div className="p-2 m-2 w-28">
@@ -14,6 +20,9 @@ const FoodItem = (props) => {
                     <p>portion Size: {itemAttribute.portionSize}</p>
                     <p>{isVeg ? "Veg" : "Non-Veg"}</p>
                     <p>{inStock ? "In Stock" : "Out of Stock"}</p>
+                    <button className="p-2 m-5 bg-green-400" onClick={
+                        () => handleAddItem()
+                    }>Add Item</button>
                 </div>
             </div>
         </div>
