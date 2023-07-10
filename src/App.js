@@ -10,6 +10,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import UserContext from "./utils/UserContext";
+import {Provider} from "react-redux";
+import store from "./utils/store";
 const About = lazy(() => import("./components/About"));
 // ^^^^^^^^^^^^^^^^^^
 // This is a dynamic import. It will load the component only when it is required.
@@ -37,11 +39,13 @@ const AppLayout = () => {
     // context api is used to avoid prop drilling
     return (
         <>
+            <Provider store={store}>
             <Header /> 
             <UserContext.Provider value={{user, setUser}}>
                 <Outlet />
                 <Footer />
             </UserContext.Provider>
+            </Provider>
         </>
     )
     // usercontext provider is the provider i,e to update the context and the usercontext consumer is the consumers
