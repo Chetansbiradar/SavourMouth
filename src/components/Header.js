@@ -2,6 +2,8 @@ import Logo from '../assets/SavourMouth.png';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from '../utils/UserContext';
+import { useSelector } from 'react-redux';
+import store from '../utils/store';
 
 const Title = () => (
     <Link to="/">
@@ -16,6 +18,7 @@ const Title = () => (
 
 const Header = () =>{
     const {user} = useContext(UserContext);
+    const cartItems = useSelector(store => store.cart.items);
         return (
             <div className="flex justify-between px-10 shadow-md mb-2">
                 <Title />
@@ -33,9 +36,9 @@ const Header = () =>{
                         <li>
                             <p>{user.name}</p>
                         </li>
-                        {/* <li>
-                            <Link to="/restaurant">Restaurants</Link>
-                        </li> */}
+                        <li>
+                            <p>Cart - {cartItems.length}</p>
+                        </li>
                     </ul>
                 </div>
             </div>
