@@ -14,7 +14,7 @@ const RestaurantMenu = () => {
 
     return restaurantMenu.length === 0 ? (<Shimmer />) : (
         <>
-        <div className="menu">
+        <div className="flex flex-wrap justify-center">
             {
                 restaurantMenu?.map((item) => {
                     return item?.card?.card?.itemCards?.map((item) => {
