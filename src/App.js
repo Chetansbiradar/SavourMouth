@@ -12,6 +12,7 @@ import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import UserContext from "./utils/UserContext";
 import {Provider} from "react-redux";
 import store from "./utils/store";
+import Cart from "./components/Cart";
 const About = lazy(() => import("./components/About"));
 // ^^^^^^^^^^^^^^^^^^
 // This is a dynamic import. It will load the component only when it is required.
@@ -82,6 +83,10 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: "restaurant/:id",
                 element: <RestaurantMenu />,
+            },
+            {
+                path:"cart",
+                element: <Cart />,
             }
         ]
     }
